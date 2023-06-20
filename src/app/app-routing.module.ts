@@ -40,6 +40,20 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'service',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Service'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/service/service.module').then((m) => m.ServiceModule)
+      }
+    ]
+  },
 
   {
     path: 'admin',
@@ -97,11 +111,6 @@ const routes: Routes = [
         path: 'pages',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
-      },
-      {
-        path: 'service',
-        loadChildren: () =>
-          import('./admin/service/service.module').then((m) => m.ServiceModule)
       },
 
     ]

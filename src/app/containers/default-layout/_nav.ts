@@ -70,11 +70,6 @@ export const navItems: INavData[] = [
       }],
 
     },
-    {
-      name: 'Services',
-      url: '/service/lister',
-      iconComponent: { name: 'cil-drop' }
-    },
 
 ];
 /*export const navItems: INavData[] = [
