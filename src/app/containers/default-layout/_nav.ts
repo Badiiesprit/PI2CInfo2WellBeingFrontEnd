@@ -43,17 +43,35 @@ export const navItems: INavData[] = [
     ],
     iconComponent: { name: 'cil-lan' }
   },
-
+  {
+    name: 'User',
+    url: '/admin/user',
+    children: [
+      {
+        name: 'Liste',
+        url: '/admin/user'
+      },
+      {
+        name: 'Ajouter',
+        url: '/admin/user/add'
+      },
+      {
+        name: 'Update',
+        url: '/admin/user/update'
+      }
+    ],
+    iconComponent: { name: 'cil-drop' }
+  },
 
   {
     name: 'Service',
-    url: '/service',
+    url: '/admin/service',
     iconComponent: { name: 'cil-drop' },
 
     children: [
       {
         name: 'lister',
-        url: '/service/lister',
+        url: '/admin/service/lister',
 
       },
 

@@ -42,6 +42,34 @@ const routes: Routes = [
   },
 
   {
+    path: 'admin/service',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Service'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/service/service.module').then((m) => m.ServiceModule)
+      }
+    ]
+  },
+  {
+    path: 'admin/user',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'User'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/user/user.module').then((m) => m.UserModule)
+      }
+    ]
+  },
+  {
     path: 'admin',
     component: DefaultLayoutComponent,
     data: {
@@ -97,11 +125,6 @@ const routes: Routes = [
         path: 'pages',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
-      },
-      {
-        path: 'service',
-        loadChildren: () =>
-          import('./admin/service/service.module').then((m) => m.ServiceModule)
       },
 
     ]
