@@ -10,6 +10,10 @@ export const navItems: INavData[] = [
     url: '/admin/center',
     children: [
       {
+        name: 'Liste',
+        url: '/admin/center'
+      },
+      {
         name: 'Ajouter',
         url: '/admin/center/add'
       },
@@ -24,6 +28,10 @@ export const navItems: INavData[] = [
     name: 'Category',
     url: '/admin/category',
     children: [
+      {
+        name: 'Liste',
+        url: '/admin/category'
+      },
       {
         name: 'Ajouter',
         url: '/admin/category/add'

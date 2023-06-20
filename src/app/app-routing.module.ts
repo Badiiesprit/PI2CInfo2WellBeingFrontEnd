@@ -9,11 +9,40 @@ import { RegisterComponent } from './views/pages/register/register.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'admin/dashboard',
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'admin/category',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Category'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/category/category.module').then((m) => m.CategoryModule)
+      }
+    ]
+  },
+  {
+    path: 'admin/center',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Center'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/center/center.module').then((m) => m.CenterModule)
+      }
+    ]
+  },
+
+  {
+    path: 'admin',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
