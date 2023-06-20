@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
-
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -66,7 +67,7 @@ const APP_CONTAINERS = [
     FormModule,
     UtilitiesModule,
     ButtonGroupModule,
-    ReactiveFormsModule,
+    FormsModule,
     SidebarModule,
     SharedModule,
     TabsModule,
@@ -75,12 +76,13 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    HttpClientModule
   ],
   providers: [
     {
       provide: LocationStrategy,
-      useClass: PathLocationStrategy 
+      useClass: PathLocationStrategy
     },
     IconSetService,
     Title

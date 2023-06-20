@@ -1,0 +1,74 @@
+
+
+
+  <!-- this part is mine  -->
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Services</c-card-header>
+      <c-card-body>
+        <table
+          [attr.hover]="true"
+          [attr.responsive]="true"
+          [attr.striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+            <tr>
+              <th class="text-center">
+                <svg cIcon name="cilPeople"></svg>
+              </th>
+              <th>User</th>
+              <th class="text-center">Country</th>
+              <th>Usage</th>
+              <th class="text-center">Payment Method</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of services; index as i">
+
+              <td>
+                <div>{{ user.name }}</div>
+                <div class="small text-medium-emphasis text-nowrap">
+                  <span>
+                    {{ user.state }} | Registered: {{ user.registered }}
+                  </span>
+                </div>
+              </td>
+              <td class="text-center">
+                <svg
+                  cIcon
+                  id="{{ user.country + user.name }}"
+                  name="cif{{ user.country }}"
+                  size="xl"
+                  title="{{ user.country }}"
+                ></svg>
+              </td>
+              <td>
+                <div class="d-flex justify-content-between">
+                  <div class="float-start">
+                    <strong>{{ user.usage }}%</strong>
+                  </div>
+                  <div class="float-end ms-1 text-nowrap">
+                    <small class="text-medium-emphasis">
+                      {{ user.period }}
+                    </small>
+                  </div>
+                </div>
+
+              </td>
+              <td class="text-center">
+                <svg cIcon name="cibCc{{ user.payment }}" size="xl"></svg>
+              </td>
+              <td>
+                <div class="small text-medium-emphasis">Last login</div>
+                <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>

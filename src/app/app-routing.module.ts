@@ -69,6 +69,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'service',
+        loadChildren: () =>
+          import('./admin/service/service.module').then((m) => m.ServiceModule)
+      },
+
     ]
   },
   {
@@ -99,6 +105,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
+
   {path: '**', redirectTo: 'dashboard'}
 ];
 

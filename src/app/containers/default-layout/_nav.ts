@@ -35,7 +35,39 @@ export const navItems: INavData[] = [
     ],
     iconComponent: { name: 'cil-lan' }
   },
-  
+
+
+  {
+    name: 'Service',
+    url: '/service',
+    iconComponent: { name: 'cil-drop' },
+
+    children: [
+      {
+        name: 'lister',
+        url: '/service/lister',
+
+      },
+
+    ],
+  },
+  {
+    name: 'Base',
+    url: '/base',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'Accordion',
+        url: '/base/accordion'
+      }],
+
+    },
+    {
+      name: 'Services',
+      url: '/service/lister',
+      iconComponent: { name: 'cil-drop' }
+    },
+
 ];
 /*export const navItems: INavData[] = [
   {
