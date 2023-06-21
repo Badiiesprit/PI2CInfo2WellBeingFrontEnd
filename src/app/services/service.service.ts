@@ -17,7 +17,7 @@ export class ServiceService {
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + id);
+    return this.http.get(this.url+"/delete/"+id);
   }
 
   getAll(): Observable<any> {
@@ -35,7 +35,7 @@ export class ServiceService {
   //   return this.http.get<Staservicesge>(this.url + id);
   // }
   update(s:Service ){
-    return this.http.put(this.url+s.id,s);
+    return this.http.put(this.url+s._id,s);
   }
 
   // updateLike(p:Stage){

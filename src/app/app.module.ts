@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { IconModule, IconSetService, } from '@coreui/icons-angular';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 // Import routing module
@@ -37,7 +38,6 @@ import {
   UtilitiesModule
 } from '@coreui/angular';
 
-import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 
 const APP_CONTAINERS = [

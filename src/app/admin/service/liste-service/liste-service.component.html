@@ -1,7 +1,12 @@
 
+<style>
+  .delete-icon {
+    color: white;
+  }
+</style>
 
 
-  <!-- this part is mine  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <c-col xs>
     <c-card class="mb-4">
       <c-card-header>Services</c-card-header>
@@ -12,50 +17,34 @@
           [attr.striped]="true"
           align="middle"
           cTable
-          class="mb-0 border"
+          class="table"
         >
-          <!-- <thead cTableColor="light">
-            <tr>
-              <th>Service</th>
-              <th class="text-center">Country</th>
-              <th>Activity</th>
-            </tr>
-          </thead> -->
-
-          <caption>List of users</caption>
           <thead cTableColor="light">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Service Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Location</th>
+              <th scope="col"></th>
+
             </tr>
           </thead>
-            <tr *ngFor="let s of services; index as i">
-                <tbody>
-                  <tr>
-                    <th scope="row"></th>
-                    <tr>{{ s.name }}</tr>
-                    <tr>{{ s.description }}</tr>
-                    <tr>{{ s.location }}</tr>
-                  </tr>
-
-
-
-              <!-- <td>
-                <div>{{ s.name }}</div>
-                <div class="small text-medium-emphasis text-nowrap">
-                  <span>
-                    Description: {{ s.description }}
-                    Loc
-                    ation: {{ s.location }}
-                  </span>
-                </div>
-                <div>{{ s.description }}</div>
-                <div>{{ s.location }}</div>
-
-              </td> -->
-
+          <tbody>
+            <tr *ngFor="let service of list; index as i">
+              <td>{{ service.name }}</td>
+              <td>{{ service.description }}</td>
+              <td>{{ service.location }}</td>
+              <td>
+                <button (click)="deleteService(service)" class="btn btn-sm btn-danger">
+                  <i class="fas fa-times delete-icon"></i>
+                </button>
+              </td>
+              <td>
+                <button [routerLink]="['/update', service._id]" class="btn btn-sm btn-danger">
+                  <i class="bi bi-pencil-fill"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </c-card-body>
     </c-card>
