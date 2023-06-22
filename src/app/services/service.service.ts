@@ -4,6 +4,7 @@ import { Service } from '../model/service';
 import { environment } from '../environments/environment';
 import { Observable, catchError } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,18 @@ export class ServiceService {
   constructor(private http: HttpClient) {}
 
 
-  add(s: Service ) {
-    return this.http.post(this.url,s);
+
+  add(serviceData: Service ): Observable<any> {
+    return this.http.post<any>(this.url+"add",serviceData).pipe(
+      catchError((error) => {
+        console.error('Error adding service:', error);
+        throw error;
+      })
+    );;
   }
 
   delete(id: number) {
-    return this.http.get(this.url+"/delete/"+id);
+    return this.http.get(this.url+"delete/"+id);
   }
 
   getAll(): Observable<any> {

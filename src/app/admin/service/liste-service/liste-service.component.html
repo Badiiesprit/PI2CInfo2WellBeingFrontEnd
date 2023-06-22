@@ -1,23 +1,21 @@
 
-<style>
-  .delete-icon {
-    color: white;
-  }
-</style>
-
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>Services</c-card-header>
+      <c-card-header style="display: flex; justify-content: space-between; align-items: center;">
+        <span>Services</span>
+        <button [routerLink]="['service/form']" style="background: none; border: none;">
+          <i class="fa-solid fa-plus circular-button" ></i>
+        </button>
+      </c-card-header>
       <c-card-body>
-        <table
+        <table datatable class="table"
           [attr.hover]="true"
           [attr.responsive]="true"
           [attr.striped]="true"
           align="middle"
           cTable
-          class="table"
+
         >
           <thead cTableColor="light">
             <tr>
@@ -34,13 +32,12 @@
               <td>{{ service.description }}</td>
               <td>{{ service.location }}</td>
               <td>
-                <button (click)="deleteService(service)" class="btn btn-sm btn-danger">
-                  <i class="fas fa-times delete-icon"></i>
+                <button (click)="deleteService(service)"  style="background: none; border: none;">
+                  <i class="fas fa-times delete-icon" ></i>
                 </button>
-              </td>
-              <td>
-                <button [routerLink]="['/update', service._id]" class="btn btn-sm btn-danger">
-                  <i class="bi bi-pencil-fill"></i>
+                &nbsp;
+                <button routerLink="/service/form" style="background: none; border: none;">
+                  <i class="fa-solid fa-pen delete-icon"></i>
                 </button>
               </td>
             </tr>

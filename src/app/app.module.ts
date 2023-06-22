@@ -4,8 +4,9 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { IconSetModule } from '@coreui/icons-angular';
 import { IconModule, IconSetService, } from '@coreui/icons-angular';
+import { DataTablesModule } from "angular-datatables";
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 // Import routing module
@@ -16,6 +17,9 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
+
+
+
 
 import {
   AvatarModule,
@@ -47,8 +51,9 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS ],
+  declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
+    DataTablesModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -57,6 +62,7 @@ const APP_CONTAINERS = [
     FooterModule,
     DropdownModule,
     GridModule,
+    IconSetModule,
     HeaderModule,
     SidebarModule,
     IconModule,
@@ -75,7 +81,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {
@@ -88,4 +94,5 @@ const APP_CONTAINERS = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

@@ -1,7 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
-
+import { ADTSettings } from 'angular-datatables/src/models/settings';
+import { UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
@@ -11,14 +12,14 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class ListeServiceComponent implements OnInit {
   public title: string;
-  list: any[] = [];
+   list:any[] = [];
     motcle:string;
 
   constructor(
     private serviceService: ServiceService,
     private route: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+ ) {}
 
 
 

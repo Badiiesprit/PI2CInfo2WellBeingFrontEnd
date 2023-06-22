@@ -1,0 +1,48 @@
+{{f.value|json}}
+<form #f="ngForm">
+
+  <div class="form-group col-md-4">
+    <label> service Name:* </label>
+    <input type="text" name="name" class="form-control" [(ngModel)]="service.name" minlength=3 pattern="[a-zA-Z ]+$" required #pn="ngModel">
+  </div>
+  <div class="alert alert-danger col-md-4" *ngIf="pn.invalid && pn.touched">
+      <div *ngIf="pn.hasError('required')"> This field is required  </div>
+      <div *ngIf="pn.hasError('minlength')"> longer than 3 caracters</div>
+      <div *ngIf="pn.hasError('pattern')"> please fill in only caracters</div>
+   </div>
+  <br>
+  <div class="form-group col-md-1">
+    <label> Description:* </label>
+    <input type="text" name="description" class="form-control" [(ngModel)]="service.description" required>
+  </div>
+  <br>
+
+  <br>
+  <div class="form-group col-md-4">
+    <label> Phone:* </label>
+    <input type="number" name="phone" class="form-control" [(ngModel)]="service.phone" required>
+  </div>
+
+  <div class="form-group col-md-4">
+    <label> email:* </label>
+    <input type="email" name="email" class="form-control" [(ngModel)]="service.email" required>
+  </div>
+  <br>
+
+  <div class="form-group col-md-4">
+    <label> Location:* </label>
+    <input type="text" name="location" class="form-control" [(ngModel)]="service.location" required>
+  </div>
+
+  <div class="form-group col-md-4">
+    <label> Date:* </label>
+    <input type="date" name="date" class="form-control" [(ngModel)]="service.date" required>
+  </div>
+
+  <br>
+  <button class="btn btn-success" (click)="save()" [disabled]="f.invalid"> {{ action }} </button>
+  &nbsp;
+  <button class="btn btn-warning"> reset </button>
+</form>
+
+

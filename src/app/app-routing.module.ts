@@ -5,6 +5,8 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { FormServiceComponent } from './admin/service/form-service/form-service.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -40,6 +42,7 @@ const routes: Routes = [
       }
     ]
   },
+
   {
     path: 'service',
     component: DefaultLayoutComponent,
@@ -51,10 +54,17 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./admin/service/service.module').then((m) => m.ServiceModule)
+      },
+      {
+        path: 'form',
+        loadChildren: () =>
+          import('./admin/service/service.module').then((m) => m.ServiceModule)
       }
     ]
   },
-
+  // {
+  //   path:"update/:id",
+  //   component: FormServiceComponent},
   {
     path: 'admin',
     component: DefaultLayoutComponent,

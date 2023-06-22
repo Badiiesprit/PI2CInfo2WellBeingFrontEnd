@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListeServiceComponent } from './liste-service/liste-service.component';
+import { FormServiceComponent } from './form-service/form-service.component';
+
 
 const routes: Routes = [
   {
@@ -22,7 +24,13 @@ const routes: Routes = [
           title: 'Lister Services',
         },
       },
-
+      {
+        path: 'form',
+        component: FormServiceComponent,
+        data: {
+          title: 'form Services',
+        },
+      },
     ],
   },
 ];

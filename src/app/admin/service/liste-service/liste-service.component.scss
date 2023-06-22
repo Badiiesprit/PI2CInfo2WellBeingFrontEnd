@@ -5,3 +5,40 @@
     }
   }
 }
+
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+.delete-icon:hover {
+  color: rgb(112, 157, 209);
+}
+
+.delete-icon:active {
+  color: rgb(84, 189, 250);
+}
+.delete-icon {
+  color: black;
+  width: 10px; height: 10px;
+  transition: background-color 0.3s
+  ;
+}
+.circular-button {
+  background-color: #052c65;
+  color: white;
+
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.circular-button:hover {
+  background-color:  rgb(112, 157, 209);
+
+}
