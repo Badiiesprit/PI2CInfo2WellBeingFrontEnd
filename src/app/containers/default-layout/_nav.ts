@@ -64,17 +64,7 @@ export const navItems: INavData[] = [
 
     ],
   },
-  {
-    name: 'Base',
-    url: '/base',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'Accordion',
-        url: '/base/accordion'
-      }],
 
-    },
 
 ];
 /*export const navItems: INavData[] = [

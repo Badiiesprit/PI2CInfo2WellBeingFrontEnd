@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Service } from '../model/service';
 import { environment } from '../environments/environment';
 import { Observable, catchError } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class ServiceService {
   url = environment.url + 'services/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient  ) {}
 
 
 
