@@ -16,13 +16,9 @@ export const navItems: INavData[] = [
       {
         name: 'Ajouter',
         url: '/admin/center/add'
-      },
-      {
-        name: 'Update',
-        url: '/admin/center/update'
       }
     ] ,
-    iconComponent: { name: 'cil-bank' }
+    iconComponent: { name: 'cil-drop' }
   },
   {
     name: 'Category',
@@ -35,16 +31,10 @@ export const navItems: INavData[] = [
       {
         name: 'Ajouter',
         url: '/admin/category/add'
-      },
-      {
-        name: 'Update',
-        url: '/admin/category/update'
       }
     ],
-    iconComponent: { name: 'cil-lan' }
+    iconComponent: { name: 'cil-puzzle' }
   },
-
-
   {
     name: 'Service',
     url: '/service',
@@ -60,26 +50,28 @@ export const navItems: INavData[] = [
     ],
   },
   {
-    name: 'Base',
-    url: '/base',
-    iconComponent: { name: 'cil-puzzle' },
+    name: 'Notifications',
+    url: '/notifications',
+    iconComponent: { name: 'cil-bell' },
     children: [
       {
-        name: 'Accordion',
-        url: '/base/accordion'
-      }],
-
-    },
-    {
-      name: 'Services',
-      url: '/service/lister',
-      iconComponent: { name: 'cil-drop' }
-    },
-    {
-      name: 'Services',
-      url: '/service/lister',
-      iconComponent: { name: 'cil-drop' }
-    },
+        name: 'Alerts',
+        url: '/notifications/alerts'
+      },
+      {
+        name: 'Badges',
+        url: '/notifications/badges'
+      },
+      {
+        name: 'Modal',
+        url: '/notifications/modal'
+      },
+      {
+        name: 'Toast',
+        url: '/notifications/toasts'
+      }
+    ]
+  },
 ];
 /*export const navItems: INavData[] = [
   {
