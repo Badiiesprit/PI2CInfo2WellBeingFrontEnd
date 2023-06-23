@@ -4,7 +4,8 @@ export class Category{
     title:string;
     description:string;
     image:Image;
-    parent:Category;
+    images:File;
+    parent:string;
     disable:string;
     createdAt:string;
     updatedAt:string;

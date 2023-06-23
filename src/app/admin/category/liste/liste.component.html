@@ -20,7 +20,7 @@
                         <tr *ngFor="let category of categorys ; let i = index" [class.disable]="category.disable">
                             <td scope="col">{{ i + 1 }}</td>
                             <td scope="col">{{category?.title}}</td>
-                            <td scope="col">{{category?.parent?.title || "Home"}}</td>
+                            <td scope="col">{{category?.parent || "Home"}}</td>
                             <td scope="col">
                                 <a [routerLink]="['/admin/category/show', category._id]" class="btn" cTooltip="Show">
                                     <svg [cIcon]="icons.cilDevices" width="25" title="Shield Icon"></svg>

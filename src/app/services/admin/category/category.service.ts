@@ -36,7 +36,18 @@ export class CategoryService {
     // const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     console.log(category);
-    return this.http.post<Category []>(this.url+'add',category, { headers })
+    const formData: FormData = new FormData();
+    if(category.images){
+      formData.append('images',category.images );
+    }
+    formData.append('title',category.title );
+    formData.append('description',category.description );
+    if (category.parent) {
+      formData.append('parent',category.parent );
+    }
+   
+
+    return this.http.post<Category []>(this.url+'add',formData, { headers })
       .pipe(
         catchError((error: any) => {
           console.error('Une erreur s\'est produite lors de la récupération des services:', error);
