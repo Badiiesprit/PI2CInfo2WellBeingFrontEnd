@@ -14,60 +14,48 @@
           cTable
           class="mb-0 border"
         >
-          <thead cTableColor="light">
+          <!-- <thead cTableColor="light">
             <tr>
-              <th class="text-center">
-                <svg cIcon name="cilPeople"></svg>
-              </th>
-              <th>User</th>
+              <th>Service</th>
               <th class="text-center">Country</th>
-              <th>Usage</th>
-              <th class="text-center">Payment Method</th>
               <th>Activity</th>
             </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of services; index as i">
+          </thead> -->
 
-              <td>
-                <div>{{ user.name }}</div>
+          <caption>List of users</caption>
+          <thead cTableColor="light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+            <tr *ngFor="let s of services; index as i">
+                <tbody>
+                  <tr>
+                    <th scope="row"></th>
+                    <tr>{{ s.name }}</tr>
+                    <tr>{{ s.description }}</tr>
+                    <tr>{{ s.location }}</tr>
+                  </tr>
+
+
+
+              <!-- <td>
+                <div>{{ s.name }}</div>
                 <div class="small text-medium-emphasis text-nowrap">
                   <span>
-                    {{ user.state }} | Registered: {{ user.registered }}
+                    Description: {{ s.description }}
+                    Loc
+                    ation: {{ s.location }}
                   </span>
                 </div>
-              </td>
-              <td class="text-center">
-                <svg
-                  cIcon
-                  id="{{ user.country + user.name }}"
-                  name="cif{{ user.country }}"
-                  size="xl"
-                  title="{{ user.country }}"
-                ></svg>
-              </td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <div class="float-start">
-                    <strong>{{ user.usage }}%</strong>
-                  </div>
-                  <div class="float-end ms-1 text-nowrap">
-                    <small class="text-medium-emphasis">
-                      {{ user.period }}
-                    </small>
-                  </div>
-                </div>
+                <div>{{ s.description }}</div>
+                <div>{{ s.location }}</div>
 
-              </td>
-              <td class="text-center">
-                <svg cIcon name="cibCc{{ user.payment }}" size="xl"></svg>
-              </td>
-              <td>
-                <div class="small text-medium-emphasis">Last login</div>
-                <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
-              </td>
-            </tr>
-          </tbody>
+              </td> -->
+
         </table>
       </c-card-body>
     </c-card>
