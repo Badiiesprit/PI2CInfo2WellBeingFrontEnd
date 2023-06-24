@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +26,8 @@ import { IconModule } from '@coreui/icons-angular';
     ButtonModule,
     GridModule,
     IconModule,
-    FormModule
+    FormModule,
+    FormsModule
   ]
 })
 export class PagesModule {
