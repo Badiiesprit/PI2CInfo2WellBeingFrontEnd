@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
 import { ServiceService } from 'src/app/services/service.service';
-import { HttpClient,HttpHeaders  } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-service',
@@ -37,22 +37,15 @@ export class FormServiceComponent {
 
 
 
-  save() {
-    if (this.action === 'add') {
-      const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-      this.http
-        .post<any>('http://localhost:5050/services/add', JSON.stringify(this.service), { headers })
-        .subscribe(
-          (response) => {
-            // Handle successful response
-            console.log('Service added successfully:', response);
-            this.route.navigate(['service/lister']);
-          },
-          (error) => {
-            console.error('An error occurred:', error);
-          }
-        );
-    } else if (this.action === 'update') {
+   save() {
+    if (this.action == 'add') {
+
+      console.log(this.service);
+
+      this.serviceService.add(this.service).subscribe(() => {
+        this.route.navigate(['service/lister']);
+      });
+    } else if (this.action == 'update') {
       this.serviceService.update(this.service).subscribe(() => {
         this.route.navigate(['/list']);
       });
