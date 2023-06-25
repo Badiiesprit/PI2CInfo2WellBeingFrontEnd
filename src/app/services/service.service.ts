@@ -15,12 +15,21 @@ export class ServiceService {
 
 
   add(serviceData: Service ): Observable<any> {
-    return this.http.post<any>(this.url+"add",serviceData).pipe(
+
+    const formData: FormData = new FormData();
+
+      for (const [key, value] of Object.entries(serviceData)) {
+        formData.append(key, value);
+      }
+
+
+
+    return this.http.post<any>(this.url+"add",formData).pipe(
       catchError((error) => {
         console.error('Error adding service:', error);
         throw error;
       })
-    );;
+    );
   }
 
   delete(id: number) {

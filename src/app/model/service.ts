@@ -1,3 +1,5 @@
+import { Image } from "./image";
+
 export class Service{
   _id:number;
   name:string;
@@ -6,5 +8,6 @@ export class Service{
   phone:number;
   email:String;
   location:String;
+  image:Object;
 
   }

@@ -1,6 +1,4 @@
-{{f.value|json}}
 <form #f="ngForm">
-
   <div class="form-group col-md-4">
     <label> service Name:* </label>
     <input type="text" name="name" class="form-control" [(ngModel)]="service.name" minlength=3 pattern="[a-zA-Z ]+$" required #pn="ngModel">
@@ -38,6 +36,13 @@
     <label> Date:* </label>
     <input type="date" name="date" class="form-control" [(ngModel)]="service.date" required>
   </div>
+
+  <div>
+   <div class="category-image">
+    <input type="file" class="form-control-file" id="categoryimage" (change)="onFileSelected($event)">
+  </div>
+  <small id="imageHelp" class="form-text text-muted d-block w-100">We'll never share your email with anyone else.</small>
+</div>
 
   <br>
   <button class="btn btn-success" (click)="save()" [disabled]="f.invalid"> {{ action }} </button>

@@ -3,20 +3,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
 import { ServiceService } from 'src/app/services/service.service';
 import { HttpClient } from '@angular/common/http';
+import { cilCheck } from '@coreui/icons';
 
 @Component({
   selector: 'app-form-service',
   templateUrl: './form-service.component.html',
   styleUrls: ['./form-service.component.scss']
 })
-export class FormServiceComponent {
-  public favoriteColor = '#26ab3c';
+export class FormServiceComponent implements OnInit  {
+  icons = { cilCheck };
+
+  public selectedFile: File | null = null; // Variable pour stocker le fichier sélectionné
+  public loading: boolean;
+
   customStylesValidated = false;
   browserDefaultsValidated = false;
   tooltipValidated = false;
 
   service: Service;
   action: string;
+
 
 
   constructor(
@@ -38,19 +44,33 @@ export class FormServiceComponent {
 
 
    save() {
+
     if (this.action == 'add') {
 
-      console.log(this.service);
+      if(this.selectedFile){
+        this.service.image = this.selectedFile;
+      }
 
+      console.log(this.service);
       this.serviceService.add(this.service).subscribe(() => {
         this.route.navigate(['service/lister']);
       });
+
+
     } else if (this.action == 'update') {
       this.serviceService.update(this.service).subscribe(() => {
         this.route.navigate(['/list']);
       });
     }
   }
+
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+
 
 
   onSubmit1() {
