@@ -1,13 +1,12 @@
-import { Image } from "./image";
-
 export class Service{
   _id:number;
   name:string;
   description:string;
-  date:Date;
+  date:string | null;;
+  image:Object;
   phone:number;
   email:String;
   location:String;
-  image:Object;
-
+  disable:boolean;
+  qrCode:String;
   }

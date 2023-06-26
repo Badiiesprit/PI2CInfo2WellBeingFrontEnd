@@ -31,6 +31,13 @@ const routes: Routes = [
           title: 'form Services',
         },
       },
+      {
+        path: 'update/:id',
+        component: FormServiceComponent,
+        data: {
+          title: 'update Services',
+        },
+      },
     ],
   },
 ];

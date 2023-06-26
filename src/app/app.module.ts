@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IconSetModule } from '@coreui/icons-angular';
 import { IconModule, IconSetService, } from '@coreui/icons-angular';
 import { DataTablesModule } from "angular-datatables";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 // Import routing module
@@ -53,6 +55,7 @@ const APP_CONTAINERS = [
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
+    MatSlideToggleModule,
     DataTablesModule,
     BrowserModule,
     BrowserAnimationsModule,

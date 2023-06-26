@@ -15,5 +15,5 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ]
+, "typings/googlemaps/googlemaps.d.ts"  ]
 }

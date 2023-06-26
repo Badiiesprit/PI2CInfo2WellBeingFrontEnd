@@ -3,6 +3,8 @@ import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Service } from '../model/service';
 import { environment } from '../environments/environment';
 import { Observable, catchError } from 'rxjs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,10 +20,13 @@ export class ServiceService {
 
     const formData: FormData = new FormData();
 
-      for (const [key, value] of Object.entries(serviceData)) {
-        formData.append(key, value);
+    for (const [key, value] of Object.entries(serviceData)) {
+      if (key === 'date') {
+        formData.append(key, new Date(value).toISOString()); // Convert date to ISO string
+      } else {
+        formData.append(key, value); // Convert other values to string
       }
-
+    }
 
 
     return this.http.post<any>(this.url+"add",formData).pipe(
@@ -47,16 +52,40 @@ export class ServiceService {
       );
   }
 
-  // searsh(id: number) {
-  //   return this.http.get<Staservicesge>(this.url + id);
-  // }
-  update(s:Service ){
-    return this.http.put(this.url+s._id,s);
+  searsh(id: number): Observable<Service> {
+    return this.http.get<Service>(this.url + 'get/' + id).pipe(
+      tap((response: Service) => {
+        return response;
+      }),
+      catchError((error) => {
+        console.error('Error retrieving service:', error);
+        throw error;
+      })
+    );
   }
 
-  // updateLike(p:Stage){
-  //   return this.http.put(this.url+p.id,p.nbrInteresse);
-  // }
+  update(service: Service): Observable<any> {
+    const formData: FormData = new FormData();
+
+    for (const [key, value] of Object.entries(service)) {
+      if (key === 'date') {
+        formData.append(key, new Date(value).toISOString()); // Convert date to ISO string
+      } else {
+        formData.append(key, value.toString()); // Convert other values to string
+      }
+    }
+
+    return this.http.post<any>(this.url + 'update/' + service._id, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating service:', error);
+        throw error;
+      })
+    );
+  }
+
+  getServicesPage(page: number) {
+    const url = `${this.url}/page?page=${page}`;
+    return this.http.get(url);
+  }
+
 }
-
-
