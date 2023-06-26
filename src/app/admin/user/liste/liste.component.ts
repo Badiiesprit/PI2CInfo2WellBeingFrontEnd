@@ -3,6 +3,7 @@ import { UserService } from '../../../services/admin/user/user.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-liste',
@@ -41,6 +42,23 @@ export class ListeComponent {
       } else {
         return '-';
       }
+    }
+
+    disableUser(user: any) {
+      this.userService.disableUser(user._id).subscribe(
+        () => {
+          console.log('User disabled successfully');
+          // location.reload();
+        },
+        (error) => {
+          console.error('Error disabling user:', error);
+        }
+      );
+    }
+    
+
+    updateUser(user: any) {
+      this.route.navigate(['update', user._id]);
     }
 
 }

@@ -4,44 +4,170 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
-            <form cForm>
+            <form (submit)="submitForm()">
               <h1>Register</h1>
               <p class="text-medium-emphasis">Create your account</p>
 
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
-                </span>
-                <input type="text" name="firstname" autoComplete="firstname" cFormControl placeholder="firstname"  />
-              </c-input-group>
+              <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  class="form-control"
+                  id="firstname"
+                  aria-describedby="firstname"
+                  placeholder=""
+                  [(ngModel)]="firstname"
+                />
+              </div>
 
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
-                </span>
-                <input autoComplete="lastname" cFormControl placeholder="lastname"  />
-              </c-input-group>
+              <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  class="form-control"
+                  id="lastname"
+                  aria-describedby="lastname"
+                  placeholder=""
+                  [(ngModel)]="lastname"
+                />
+              </div>
 
-              <c-input-group class="mb-3">
-                <span cInputGroupText>@</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
-              </c-input-group>
-              <c-input-group class="mb-3">
+              <div class="form-group">
+                <label for="select">Gender</label>
+                <select
+                  class="form-select"
+                  aria-label="Gender"
+                  name="gender"
+                  id="gender"
+                  [(ngModel)]="gender"
+                >
+                  <option selected></option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
+                </select>
+              </div>
 
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="password" cFormControl placeholder="Password" type="password" />
-              </c-input-group>
+              <div class="form-group">
+                <label for="date_birth">Date Of Birth</label>
+                <input
+                  type="date"
+                  name="date_birth"
+                  class="form-control"
+                  id="date_birth"
+                  aria-describedby="date_birth"
+                  placeholder=""
+                  [(ngModel)]="date_birth"
+                />
+              </div>
 
-              <c-input-group class="mb-4">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="password" cFormControl placeholder="Confirm password" type="password" />
-              </c-input-group>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="number"
+                  name="phone"
+                  class="form-control"
+                  id="phone"
+                  aria-describedby="phone"
+                  placeholder=""
+                  [(ngModel)]="phone"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  class="form-control"
+                  id="address"
+                  aria-describedby="address"
+                  placeholder=""
+                  [(ngModel)]="address"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="state">State</label>
+                <input
+                  type="text"
+                  name="state"
+                  class="form-control"
+                  id="state"
+                  aria-describedby="state"
+                  placeholder=""
+                  [(ngModel)]="state"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="city">City</label>
+                <input
+                  type="city"
+                  name="city"
+                  class="form-control"
+                  id="city"
+                  aria-describedby="city"
+                  placeholder=""
+                  [(ngModel)]="city"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="zip_code">Zip_code</label>
+                <input
+                  type="number"
+                  name="zip_code"
+                  class="form-control"
+                  id="zip_code"
+                  aria-describedby="zip_code"
+                  placeholder=""
+                  [(ngModel)]="zip_code"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="email"
+                  placeholder=""
+                  [(ngModel)]="email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder=""
+                  [(ngModel)]="password"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input
+                  type="password"
+                  name="cpassword"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder=""
+                  [(ngModel)]="cpassword"
+                />
+              </div>
+              <br />
               <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+                <button type="submit" cButton color="success">
+                  Create Account
+                </button>
               </div>
             </form>
           </c-card-body>

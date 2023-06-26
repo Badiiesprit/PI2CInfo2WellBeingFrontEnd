@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/admin/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
-import { UserService } from 'src/app/services/admin/user/user.service';
-import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-add',
@@ -12,20 +11,41 @@ import { TokenService } from 'src/app/services/token/token.service';
 export class AddComponent {
 
   user: User = new User();
+  action:String;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  addUser() {
+  ngOnInit(): void {
+    let id=this.route.snapshot.params['id']
+    this.user = new User()
+    this.action="Ajout Article"
+    if(id!=null){
+      this.action="Mettre a jour"
+      this.userService.search(id).subscribe(
+        (response:User)=>{this.user=response}
+      )
+    }
+
+  }
+
+  submitForm() {
+  if (this.user) {
     this.userService.add(this.user).subscribe(
-      (response) => {
-        // L'utilisateur a été ajouté avec succès
-        console.log('Utilisateur ajouté:', response);
-        // Réinitialiser le formulaire ou effectuer d'autres actions nécessaires
-        this.user = new User();
+      (response: User) => {
+        console.log(response); // Optional: Log the response from the server
+        console.log('New user created successfully');
+        this.router.navigate(['/admin/user']);
       },
       (error) => {
-        console.error('Erreur lors de l\'ajout de l\'utilisateur:', error);
+        console.error('Error creating user:', error);
       }
     );
+  } else {
+    console.error('Invalid user object');
   }
+}
 }

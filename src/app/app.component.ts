@@ -17,9 +17,6 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private iconSetService: IconSetService
   ) {
-    titleService.setTitle(this.title);
-    // iconSet singleton
-    iconSetService.icons = { ...iconSubset };
   }
 
   ngOnInit(): void {

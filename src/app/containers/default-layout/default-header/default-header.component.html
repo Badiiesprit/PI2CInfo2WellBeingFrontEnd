@@ -14,12 +14,12 @@
     </button>
     <c-header-nav class="d-none d-lg-flex me-auto">
       <c-nav-item>
-        <a cNavLink routerLink="/dashboard" routerLinkActive="active">
+        <a cNavLink routerLink="" routerLinkActive="active">
           Dashboard
         </a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/users" routerLinkActive="active">Users</a>
+        <a cNavLink routerLink="/admin/user" routerLinkActive="active">Users</a>
       </c-nav-item>
       <c-nav-item>
         <a cNavLink routerLink="/settings" routerLinkActive="active">
@@ -153,9 +153,9 @@
         <hr cDropdownDivider/>
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <a routerLink="/login" cDropdownItem>
           <svg cIcon class="me-2" name="cilLockLocked"></svg>
-          Lock Account
+          Logout
         </a>
       </li>
       <li></li>
