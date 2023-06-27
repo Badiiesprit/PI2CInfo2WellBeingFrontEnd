@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../../services/admin/category/category.service';
+import { Category } from 'src/app/model/category';
+import { freeSet } from '@coreui/icons';
 
 @Component({
   selector: 'app-category-liste',
@@ -8,13 +10,31 @@ import { CategoryService } from '../../../services/admin/category/category.servi
 })
 export class ListeComponent {
 
-  
+  icons = freeSet ;
+  public categorys: Category[] = []; 
 
   constructor(private categoryService: CategoryService) {
-    categoryService.getCategorys().subscribe(
-      (response)=>{
-        console.log(response);
-      }
-    )
   }
+  ngOnInit() {
+    this.categoryService.getAll().subscribe(
+      (response) => {
+        if (response.result) {
+          this.categorys = response.result as Category[];
+        }
+      }
+    );
+  }
+
+  deleteCenter(centerId: string): void {
+    this.categoryService.delete(centerId).subscribe((response) => {
+        if (response.result) {
+          this.categoryService.getAll().subscribe((response) => {
+            if (response.result) {
+              this.categorys = response.result as Category[];
+            }
+          });
+        }
+      });
+  }
+
 }

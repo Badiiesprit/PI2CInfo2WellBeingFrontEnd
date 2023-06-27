@@ -11,21 +11,21 @@ const routes: Routes = [
     path: '',
     component: ListeComponent,
     data: {
-      title: 'Liste Category',
+      title: 'Liste Center',
     },
   },
   {
     path: 'add',
     component: AddComponent,
     data: {
-      title: 'Add Category',
+      title: 'Add Center',
     },
   },
   {
-    path: 'update',
+    path: 'update/:id',
     component: UpdateComponent,
     data: {
-      title: 'Update Category',
+      title: 'Update Center',
     },
   }
 ];

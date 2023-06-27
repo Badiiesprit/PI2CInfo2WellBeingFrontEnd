@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListeComponent } from './liste/liste.component';
 import { AddComponent } from './add/add.component';
 import { UpdateComponent } from './update/update.component';
+import { ShowComponent } from './show/show.component';
 
 const routes: Routes = [
   {
@@ -20,10 +21,17 @@ const routes: Routes = [
     },
   },
   {
-    path: 'update',
+    path: 'update/:id',
     component: UpdateComponent,
     data: {
       title: 'Update Category',
+    },
+  },
+  {
+    path: 'show/:id',
+    component: ShowComponent,
+    data: {
+      title: 'Show Category',
     },
   }
 ];
