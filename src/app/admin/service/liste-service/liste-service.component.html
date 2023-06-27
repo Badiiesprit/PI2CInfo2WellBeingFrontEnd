@@ -1,0 +1,62 @@
+
+
+
+  <!-- this part is mine  -->
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Services</c-card-header>
+      <c-card-body>
+        <table
+          [attr.hover]="true"
+          [attr.responsive]="true"
+          [attr.striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <!-- <thead cTableColor="light">
+            <tr>
+              <th>Service</th>
+              <th class="text-center">Country</th>
+              <th>Activity</th>
+            </tr>
+          </thead> -->
+
+          <caption>List of users</caption>
+          <thead cTableColor="light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+            <tr *ngFor="let s of services; index as i">
+                <tbody>
+                  <tr>
+                    <th scope="row"></th>
+                    <tr>{{ s.name }}</tr>
+                    <tr>{{ s.description }}</tr>
+                    <tr>{{ s.location }}</tr>
+                  </tr>
+
+
+
+              <!-- <td>
+                <div>{{ s.name }}</div>
+                <div class="small text-medium-emphasis text-nowrap">
+                  <span>
+                    Description: {{ s.description }}
+                    Loc
+                    ation: {{ s.location }}
+                  </span>
+                </div>
+                <div>{{ s.description }}</div>
+                <div>{{ s.location }}</div>
+
+              </td> -->
+
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
