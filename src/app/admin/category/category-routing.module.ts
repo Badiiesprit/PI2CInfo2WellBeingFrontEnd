@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListeComponent } from './liste/liste.component';
-import { AddComponent } from './add/add.component';
-import { UpdateComponent } from './update/update.component';
 import { ShowComponent } from './show/show.component';
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
@@ -15,14 +14,14 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddComponent,
+    component: FormComponent,
     data: {
       title: 'Add Category',
     },
   },
   {
     path: 'update/:id',
-    component: UpdateComponent,
+    component: FormComponent,
     data: {
       title: 'Update Category',
     },

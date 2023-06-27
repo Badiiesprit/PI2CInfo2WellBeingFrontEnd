@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // views
 import { ListeComponent } from './liste/liste.component';
-import { AddComponent } from './add/add.component';
-import { UpdateComponent } from './update/update.component';
 // Components Routing
 import { CenterRoutingModule } from './center-routing.module';
 // utils
@@ -20,13 +18,19 @@ import {
   ListGroupModule,
   SharedModule,
   SpinnerModule,
-  AlertModule
+  AlertModule,
+  TooltipModule,
+  CarouselModule,
+  BadgeModule
 } from '@coreui/angular';
+import { IconModule } from '@coreui/icons-angular';
+import { FormComponent } from './form/form.component';
+import { ShowComponent } from './show/show.component';
 @NgModule({
   declarations: [
     ListeComponent,
-    AddComponent,
-    UpdateComponent
+    FormComponent,
+    ShowComponent
   ],
   imports: [
     CenterRoutingModule,
@@ -41,7 +45,11 @@ import {
     SharedModule,
     FormsModule,
     SpinnerModule,
-    AlertModule
+    AlertModule,
+    IconModule,
+    TooltipModule,
+    CarouselModule,
+    BadgeModule
   ]
 })
 export class CenterModule { }

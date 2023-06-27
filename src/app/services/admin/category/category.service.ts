@@ -32,21 +32,14 @@ export class CategoryService {
       );
   }
 
-  addCategory(category:Category): Observable<any> {
+  addCategory(category:Category,file:File): Observable<any> {
     // const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    console.log(category);
-    const formData: FormData = new FormData();
-    if(category.images){
-      formData.append('images',category.images );
-    }
-    formData.append('title',category.title );
-    formData.append('description',category.description );
-    if (category.parent) {
-      formData.append('parent',category.parent );
-    }
-   
-
+    const formData = new FormData();
+    Object.entries(category).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    if(file) formData.append("image", file);
     return this.http.post<Category []>(this.url+'add',formData, { headers })
       .pipe(
         catchError((error: any) => {
@@ -60,6 +53,35 @@ export class CategoryService {
     // const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<Category []>(this.url+'delete/'+id,{headers})
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error; 
+        })
+      );
+  }
+
+  updateCategory(category:Category,file:File): Observable<any> {
+    // const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const formData = new FormData();
+    Object.entries(category).forEach(([key, value]) => {
+      if(key == "parent"){
+        if(category.parent && category.parent._id){
+          formData.append("parent", category?.parent?._id.toString());
+        }
+      }else{
+        formData.append(key, value);
+      }
+      
+    });
+    if(file){
+      formData.append("image", file);
+    }else{
+      formData.delete("image");
+    }
+    
+    return this.http.post<Category []>(this.url+'update/'+category._id,formData, { headers })
       .pipe(
         catchError((error: any) => {
           console.error('Une erreur s\'est produite lors de la récupération des services:', error);

@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { ListeComponent } from './liste/liste.component';
-import { AddComponent } from './add/add.component';
-import { UpdateComponent } from './update/update.component';
-
+import { FormComponent } from './form/form.component';
+import { ShowComponent } from './show/show.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,14 +15,22 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddComponent,
+    component: FormComponent,
     data: {
       title: 'Add Center',
     },
   },
   {
     path: 'update/:id',
-    component: UpdateComponent,
+    component: FormComponent,
+    data: {
+      title: 'Update Center',
+    },
+  }
+  ,
+  {
+    path: 'show/:id',
+    component: ShowComponent,
     data: {
       title: 'Update Center',
     },
