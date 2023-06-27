@@ -18,7 +18,7 @@ export const navItems: INavData[] = [
         url: '/admin/center/add'
       }
     ] ,
-    iconComponent: { name: 'cil-drop' }
+    iconComponent: { name: 'cil-cursor' }
   },
   {
     name: 'Category',
@@ -33,7 +33,7 @@ export const navItems: INavData[] = [
         url: '/admin/category/add'
       }
     ],
-    iconComponent: { name: 'cil-puzzle' }
+    iconComponent: { name: 'cil-calculator' }
   },
   {
     name: 'Service',

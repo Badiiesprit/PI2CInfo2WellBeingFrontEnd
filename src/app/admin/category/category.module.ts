@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // views
 import { ListeComponent } from './liste/liste.component';
-import { AddComponent } from './add/add.component';
-import { UpdateComponent } from './update/update.component';
 // Components Routing
 import { CategoryRoutingModule } from './category-routing.module';
 // utils
@@ -19,16 +17,17 @@ import {
   SharedModule,
   SpinnerModule,
   AlertModule,
-  TooltipModule
+  TooltipModule,
+  BadgeModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ShowComponent } from './show/show.component';
+import { FormComponent } from './form/form.component';
 @NgModule({
   declarations: [
     ListeComponent,
-    AddComponent,
-    UpdateComponent,
-    ShowComponent
+    ShowComponent,
+    FormComponent
   ],
   imports: [
     CategoryRoutingModule,
@@ -45,7 +44,8 @@ import { ShowComponent } from './show/show.component';
     SpinnerModule,
     AlertModule,
     IconModule,
-    TooltipModule
+    TooltipModule,
+    BadgeModule
   ]
 })
 export class CategoryModule { }

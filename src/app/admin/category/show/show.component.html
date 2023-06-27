@@ -8,11 +8,12 @@
             </c-card-header>
             <c-card-body>
               <c-card>
-                  <img cCardImg="top" src="{{baseurl}}{{category?.image?.path }}">
+                  <img cCardImg="top" class="imageShow" src="{{baseurl}}{{image?.path}}">
                   <c-card-body>
-                    <h5 cCardTitle>{{category.title}}</h5>
+                    <h6 cCardTitle>Parent : {{category.parent?.title || "Home"}}</h6>
+                    <h5 cCardTitle>Title : {{category.title}}</h5>
                     <p cCardText>
-                      {{category.description}}
+                      Description : {{category.description}}
                     </p>
                     <p cCardText>
                       <b>Created At :</b> {{category.createdAt}}

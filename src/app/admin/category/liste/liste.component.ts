@@ -25,7 +25,7 @@ export class ListeComponent {
     );
   }
 
-  deleteCenter(centerId: string): void {
+  deleteCenter(centerId: any): void {
     this.categoryService.delete(centerId).subscribe((response) => {
         if (response.result) {
           this.categoryService.getAll().subscribe((response) => {

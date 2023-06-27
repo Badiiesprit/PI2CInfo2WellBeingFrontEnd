@@ -13,24 +13,34 @@
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">Parent</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let category of categorys ; let i = index" [class.disable]="category.disable">
-                            <td scope="col">{{ i + 1 }}</td>
-                            <td scope="col">{{category?.title}}</td>
-                            <td scope="col">{{category?.parent || "Home"}}</td>
                             <td scope="col">
+                                {{ i + 1 }}
+                            </td>
+                            <td scope="col">{{category?.title}}</td>
+                            <td scope="col">{{category?.parent?.title || "Home"}}</td>
+                            <td scope="col" class="text-center">
                                 <a [routerLink]="['/admin/category/show', category._id]" class="btn" cTooltip="Show">
-                                    <svg [cIcon]="icons.cilDevices" width="25" title="Shield Icon"></svg>
+                                    <svg [cIcon]="icons.cilFindInPage" width="25" title="Shield Icon"></svg>
                                 </a>
                                 <a [routerLink]="['/admin/category/update', category._id]" class="btn" cTooltip="Update">
                                     <svg [cIcon]="icons.cilPencil" width="25" title="Shield Icon"></svg>
                                 </a>
-                                <a (click)="deleteCenter(category._id.toString())" class="btn" cTooltip="Archive">
-                                    <svg [cIcon]="icons.cilInbox" width="25" title="Shield Icon"></svg>
+                                <a (click)="deleteCenter(category._id)" class="btn" cTooltip="Archive">
+                                    <svg [cIcon]="icons.cilTrash" width="25" title="Shield Icon"></svg>
                                 </a>
+                                <span *ngIf="category.disable else badgeactiver">
+                                    <c-badge color="danger" style="transform: rotate(-15deg);">Archived</c-badge>
+                                </span>
+                                <ng-template #badgeactiver>
+                                    <span>
+                                        <c-badge color="success" style="transform: rotate(-15deg);">Activated</c-badge>
+                                    </span>
+                                </ng-template>
                             </td>
                         </tr>
                     </tbody>

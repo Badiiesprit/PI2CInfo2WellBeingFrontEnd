@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../model/category';
 import { CategoryService } from 'src/app/services/admin/category/category.service';
-import { Router } from '@angular/router';
-import { cilCheck } from '@coreui/icons';
+import { freeSet } from '@coreui/icons';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
-export class AddComponent implements OnInit {
-
-  icons = { cilCheck };
+export class FormComponent {
+  icons = { freeSet };
 
   public thiscategory: Category = new Category();
-  public selectedFile: File | null = null; // Variable pour stocker le fichier sélectionné
+  public selectedFile: File; // Variable pour stocker le fichier sélectionné
   public loading: boolean;
   public messageIsUnread: boolean = false; 
   public messageIsError: boolean = false;
   public messageText: string;
-  
-  category_parent: Category[] = []; 
+  public addform: boolean = true;
+  public category_parent: Category[] = []; 
 
-  constructor(private router: Router, private categoryService: CategoryService) { 
+  constructor(private router: ActivatedRoute, private categoryService: CategoryService) { 
     this.loading = false;
     this.messageText = "";
     let category: Category = new Category();
@@ -31,6 +30,21 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.router.params.subscribe(params => {
+      const id = params['id']; 
+      if(id){
+        this.categoryService.getById(id).subscribe(
+          (response) => {
+            if (response.result) {
+              this.thiscategory = response.result;
+              this.addform = false;
+            }
+          }
+        );
+      }
+    });
+
     this.categoryService.getAll().subscribe(
       (response) => {
         if (response.result) {
@@ -44,13 +58,10 @@ export class AddComponent implements OnInit {
       }
     );
   }
-
   submitForm() {
     this.loading = true;
-    if(this.selectedFile){
-      this.thiscategory.images = this.selectedFile;
-    }
-    this.categoryService.addCategory(this.thiscategory).subscribe(
+    if(this.addform){
+      this.categoryService.addCategory(this.thiscategory,this.selectedFile).subscribe(
       (response) => {
         this.loading = false;
         if(response && response.error){
@@ -60,16 +71,33 @@ export class AddComponent implements OnInit {
         }else{
           this.messageIsUnread  = true;
           this.messageIsError  = false;
-          this.messageText = "add ssss";
+          this.messageText = "Add category successfully";
         }
         
       }
     )
+    }else{
+      this.categoryService.updateCategory(this.thiscategory,this.selectedFile).subscribe(
+        (response) => {
+          this.loading = false;
+          if(response && response.error){
+            this.messageIsError  = true;
+            this.messageIsUnread  = false;
+            this.messageText = response.error;
+          }else{
+            this.messageIsUnread  = true;
+            this.messageIsError  = false;
+            this.messageText = "Update category successfully.";
+          }
+          
+        }
+      )
+    }
   }
 
   onFileSelected(event: any) {
     // Gérer la sélection d'un fichier
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = event.target.files;
     console.log(this.selectedFile); // Afficher le fichier sélectionné dans la console (à adapter selon vos besoins)
     // Vous pouvez envoyer le fichier au serveur ici ou effectuer d'autres actions nécessaires
   }
