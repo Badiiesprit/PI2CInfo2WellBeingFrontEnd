@@ -8,3 +8,4 @@ export class Image{
     mimetype:string;
     path:string;
 }
+

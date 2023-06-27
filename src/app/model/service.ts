@@ -1,9 +1,9 @@
 export class Service{
-  id:number;
+  _id:number;
   name:string;
   description:string;
-  date:Date;
-  image:string;
+  date:string | null;;
+  image:Object;
   phone:number;
   email:String;
   location:String;

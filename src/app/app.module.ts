@@ -3,6 +3,10 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { IconSetModule } from '@coreui/icons-angular';
+import { IconModule, IconSetService, } from '@coreui/icons-angular';
+import { DataTablesModule } from "angular-datatables";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -14,6 +18,9 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
+
+
+
 
 import {
   AvatarModule,
@@ -36,7 +43,6 @@ import {
   UtilitiesModule
 } from '@coreui/angular';
 
-import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 
 const APP_CONTAINERS = [
@@ -46,8 +52,10 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS ],
+  declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
+    MatSlideToggleModule,
+    DataTablesModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -56,6 +64,7 @@ const APP_CONTAINERS = [
     FooterModule,
     DropdownModule,
     GridModule,
+    IconSetModule,
     HeaderModule,
     SidebarModule,
     IconModule,
@@ -73,7 +82,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {
@@ -86,4 +95,5 @@ const APP_CONTAINERS = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

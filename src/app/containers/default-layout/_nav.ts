@@ -42,12 +42,17 @@ export const navItems: INavData[] = [
 
     children: [
       {
-        name: 'lister',
+        name: 'Liste Services',
         url: '/service/lister',
+
+      },
+      {
+        name: 'Formulaire',
+        url: '/service/form',
 
       },
 
     ],
   },
- 
 ];
+

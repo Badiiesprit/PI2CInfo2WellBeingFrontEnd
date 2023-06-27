@@ -5,6 +5,17 @@ import { CardModule, GridModule, NavModule, UtilitiesModule, TabsModule } from '
 import { IconModule } from '@coreui/icons-angular';
 
 import { ListeServiceComponent } from './liste-service/liste-service.component';
+import { FormServiceComponent } from './form-service/form-service.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  ButtonGroupModule,
+  ButtonModule,
+  DropdownModule,
+  FormModule,
+  ListGroupModule,
+  SharedModule
+} from '@coreui/angular';
 
 // Theme Routing
 import { ServiceRoutingModule } from './service-routing.module';
@@ -18,10 +29,19 @@ import { ServiceRoutingModule } from './service-routing.module';
     UtilitiesModule,
     IconModule,
     NavModule,
-    TabsModule
+    TabsModule,
+    ButtonGroupModule,
+    ButtonModule,
+    DropdownModule,
+    FormModule,
+    ListGroupModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
   ListeServiceComponent,
+  FormServiceComponent
   ]
 })
 export class ServiceModule {
