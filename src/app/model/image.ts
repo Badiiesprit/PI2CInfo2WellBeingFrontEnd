@@ -1,5 +1,5 @@
 export class Image{
-  _id:number;
+  _id:string;
   fieldname:string;
   originalname:string;
   size:string;

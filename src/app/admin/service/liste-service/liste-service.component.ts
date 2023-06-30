@@ -1,11 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
-import { ADTSettings } from 'angular-datatables/src/models/settings';
-import { UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { ServiceService } from 'src/app/services/service.service';
 import { HttpClient } from '@angular/common/http';
-
+import { ImageService } from 'src/app/services/image.service';
+import { Image } from 'src/app/model/image';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-liste-service',
   templateUrl: './liste-service.component.html',
@@ -24,11 +24,18 @@ export class ListeServiceComponent implements OnInit {
     sortField: string = '';
     sortOrder: string = '';
 
+    selectedService: Service | null = null;
+    showDetails:Boolean;
+    public image:Image = new Image();
+    public imageUrl: string;
+    public baseurl = environment.url;
+
   constructor(
     private serviceService: ServiceService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private imageService: ImageService,
  ) {}
 
 
@@ -38,14 +45,51 @@ export class ListeServiceComponent implements OnInit {
       this.serviceService.getAll().subscribe(
         (response) => {
           this.list = response.services;
+          $(document).ready(function() {
+            $('#myTable').DataTable({
+              columnDefs: [{
+                targets: 'no-sort',
+                orderable: false
+              }]
+            });
+          });
         },
         (error) => {
           console.error('Error fetching services:', error);
         }
       );
-      this.getServicesPage(this.currentPage);
+      // this.getServicesPage(this.currentPage);
+
 
     }
+
+    showServiceDetails(service: Service) {
+      this.selectedService = service;
+      this.showDetails = true;
+      console.log(service.image);
+
+
+      this.imageService.searsh(service.image as string).subscribe((response: Image) => {
+        console.log("Response", response);
+        this.imageUrl=response.path;
+      });
+      console.log(this.imageUrl);
+      const url="127.0.0.1:5050/"+this.imageUrl;
+      console.log(url);
+    }
+
+
+
+
+
+
+
+    hideServiceDetails() {
+      this.selectedService = null;
+    }
+
+
+
 
 
     searchServices() {

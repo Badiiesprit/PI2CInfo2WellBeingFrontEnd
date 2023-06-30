@@ -19,7 +19,6 @@ export class ServiceService {
   add(serviceData: Service ): Observable<any> {
 
     const formData: FormData = new FormData();
-
     for (const [key, value] of Object.entries(serviceData)) {
       if (key === 'date') {
         formData.append(key, new Date(value).toISOString()); // Convert date to ISO string
