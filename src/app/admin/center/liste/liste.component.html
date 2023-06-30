@@ -1,1 +1,38 @@
-<p>liste works!</p>
+
+
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+            <strong>Liste Category</strong>
+            </c-card-header>
+            <c-card-body>
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">N° Vus</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let center of centers; let i = index" [class.disable]="center.disable">
+                            <td scope="col">{{ i + 1 }}</td>
+                            <td scope="col">{{ center.title }}</td>
+                            <td scope="col">{{ center.phone }}</td>
+                            <td scope="col">{{ center.email }}</td>
+                            <td scope="col">{{ center.nbVus }} Vus</td>
+                            <td scope="col">
+                              <a [routerLink]="['/admin/center/update', center._id]" class="btn btn-primary">Update</a>
+                              <a (click)="deleteCenter(center._id.toString())" class="btn btn-secondary">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

@@ -1,17 +1,72 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Observable, catchError } from 'rxjs';
+import { Category } from 'src/app/model/category';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  public url: string= environment.url+'category/';
-
+  public url: string= environment.url+'/category/';
+  public token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhmNWVhMDJhOGQ1YmI5YWEyNThlODgiLCJyb2xlIjpbXSwiaWF0IjoxNjg3MzkzNTExLCJleHAiOjUyODczODk5MTF9.iv1cyIm1gkbLmRp9QmJoya2-ZC8n56Spb9AaGVFl990";
   constructor(private http: HttpClient) {
   }
 
-  getCategorys(){
-    return this.http.get(this.url+'get')
+
+  getById(id:string): Observable<any> {
+    return this.http.get<Category []>(this.url+'get/'+id)
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error; 
+        })
+      );
   }
+  getAll(): Observable<any> {
+    return this.http.get<Category []>(this.url+'get')
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error; 
+        })
+      );
+  }
+
+  addCategory(category:Category): Observable<any> {
+    // const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    console.log(category);
+    const formData: FormData = new FormData();
+    if(category.images){
+      formData.append('images',category.images );
+    }
+    formData.append('title',category.title );
+    formData.append('description',category.description );
+    if (category.parent) {
+      formData.append('parent',category.parent );
+    }
+   
+
+    return this.http.post<Category []>(this.url+'add',formData, { headers })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error; 
+        })
+      );
+  }
+
+  delete(id:string): Observable<any> {
+    // const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.delete<Category []>(this.url+'delete/'+id,{headers})
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error; 
+        })
+      );
+  }
+
 
 }
