@@ -6,6 +6,7 @@
           <c-card class="p-4">
             <c-card-body>
               <form (submit)="submitForm()">
+                <h2>Login</h2>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <input
@@ -53,8 +54,11 @@
           >
             <c-card-body class="text-center">
               <div>
-                <h2>Sign up</h2>
-                <p>Welcome To TuniVita</p>
+
+                <div>
+                  <img src="../../../../assets/img/brand/Tunivita.png" alt="Tunivita Logo" width="300">
+                </div>
+                <br><br><br><br>
                 <button
                   [active]="true"
                   cButton
