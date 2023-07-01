@@ -1,16 +1,17 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
-import { ADTSettings } from 'angular-datatables/src/models/settings';
-import { UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { ServiceService } from 'src/app/services/service.service';
 import { HttpClient } from '@angular/common/http';
-
+import { ImageService } from 'src/app/services/image.service';
+import { Image } from 'src/app/model/image';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-liste-service',
   templateUrl: './liste-service.component.html',
   styleUrls: ['./liste-service.component.scss']
 })
+
 export class ListeServiceComponent implements OnInit {
    list:any[] = [];
     motcle:string;
@@ -24,28 +25,95 @@ export class ListeServiceComponent implements OnInit {
     sortField: string = '';
     sortOrder: string = '';
 
+    selectedService: Service | null = null;
+    showDetails:Boolean;
+    public image:Image = new Image();
+    public imageUrl: string;
+    public baseurl = environment.url;
+    startDate: string;
+    endDate: string;
+    statistics: any[];
+
   constructor(
     private serviceService: ServiceService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private imageService: ImageService,
  ) {}
 
 
 
     ngOnInit() {
+      const startDate = new Date(); // Set the desired start date
+      const endDate = new Date();
 
       this.serviceService.getAll().subscribe(
         (response) => {
           this.list = response.services;
+          $(document).ready(function() {
+            $('#myTable').DataTable({
+              columnDefs: [{
+                targets: 'no-sort',
+                orderable: false
+              }]
+            });
+          });
         },
         (error) => {
           console.error('Error fetching services:', error);
         }
       );
-      this.getServicesPage(this.currentPage);
-
+      // this.getServicesPage(this.currentPage);
     }
+
+    getStatistics(): void {
+      const startDate = '2023-07-07'; // Replace with your actual start date
+      const endDate = '2023-07-30'; // Replace with your actual end date
+
+      this.http.get<any>('http://localhost:5050/services/statistics', { params: { startDate,endDate } })
+        .subscribe(
+          response => {
+            this.statistics = response.statistics;
+          },
+          error => {
+            console.error('Error fetching statistics:', error);
+          }
+        );
+    }
+
+
+
+
+
+
+    showServiceDetails(service: Service) {
+      this.selectedService = service;
+      this.showDetails = true;
+      console.log(service.image);
+
+
+      this.imageService.searsh(service.image as string).subscribe((response: Image) => {
+        console.log("Response", response);
+        this.imageUrl=response.path;
+      });
+      console.log(this.imageUrl);
+      const url="127.0.0.1:5050/"+this.imageUrl;
+      console.log(url);
+    }
+
+
+
+
+
+
+
+    hideServiceDetails() {
+      this.selectedService = null;
+    }
+
+
+
 
 
     searchServices() {

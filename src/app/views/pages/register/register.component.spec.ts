@@ -1,35 +1,47 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/admin/user/user.service';
 
-import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../icons/icon-subset';
-import { RegisterComponent } from './register.component';
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent {
+  loading: boolean = false;
+  user: User = new User();
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-  let iconSetService: IconSetService;
+  constructor(private userService: UserService, private http: HttpClient) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
-      imports: [CardModule, FormModule, GridModule, ButtonModule, IconModule],
-      providers: [IconSetService]
-    })
-    .compileComponents();
-  });
+  addUser() {
+    this.loading = true;
 
-  beforeEach(() => {
-    iconSetService = TestBed.inject(IconSetService);
-    iconSetService.icons = { ...iconSubset };
+    this.userService.add(this.user).subscribe(
+      (response) => {
+        // User added successfully
+        console.log('User added:', response);
+        // Reset the form or perform any other necessary actions
+        this.user = new User();
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error adding user:', error);
+        this.loading = false;
+      }
+    );
 
-    fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    this.http.post('http://localhost:5050/users', this.user).subscribe(
+      (response) => {
+        console.log('User added to the database successfully.');
+        // You can perform any additional actions after adding the user.
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error adding user to the database:', error);
+        // Handle any errors that occurred during the database operation.
+        this.loading = false;
+      }
+    );
+  }
+}

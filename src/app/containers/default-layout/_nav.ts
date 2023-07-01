@@ -5,6 +5,23 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' }
   },
+
+  {
+    name: 'User',
+    url: '/admin/user',
+    children: [
+      {
+        name: 'Liste',
+        url: '/admin/user'
+      },
+      {
+        name: 'Ajouter',
+        url: '/admin/user/add'
+      },
+
+    ],
+    iconComponent: { name: 'cil-drop' }
+  },
   {
     name: 'Center',
     url: '/admin/center',

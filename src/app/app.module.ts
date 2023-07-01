@@ -18,7 +18,9 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
+import { DefaultFooterCxComponent, DefaultHeaderCxComponent, DefaultLayoutCxComponent } from './containers-cx';
 
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -42,17 +44,23 @@ import {
   TabsModule,
   UtilitiesModule
 } from '@coreui/angular';
+import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
+import { HomeComponent } from './client/home/home.component';
 
 
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
+  DefaultLayoutCxComponent,
+  DefaultHeaderCxComponent,
+  DefaultFooterCxComponent
+
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, HomeComponent ],
   imports: [
     MatSlideToggleModule,
     DataTablesModule,
@@ -71,6 +79,7 @@ const APP_CONTAINERS = [
     NavModule,
     ButtonModule,
     FormModule,
+    FormsModule,
     UtilitiesModule,
     ButtonGroupModule,
     SidebarModule,
