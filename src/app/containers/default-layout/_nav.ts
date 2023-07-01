@@ -5,6 +5,23 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' }
   },
+
+  {
+    name: 'User',
+    url: '/admin/user',
+    children: [
+      {
+        name: 'Liste',
+        url: '/admin/user'
+      },
+      {
+        name: 'Ajouter',
+        url: '/admin/user/add'
+      },
+
+    ],
+    iconComponent: { name: 'cil-drop' }
+  },
   {
     name: 'Center',
     url: '/admin/center',
@@ -18,7 +35,7 @@ export const navItems: INavData[] = [
         url: '/admin/center/add'
       }
     ] ,
-    iconComponent: { name: 'cil-drop' }
+    iconComponent: { name: 'cil-cursor' }
   },
   {
     name: 'Category',
@@ -33,7 +50,7 @@ export const navItems: INavData[] = [
         url: '/admin/category/add'
       }
     ],
-    iconComponent: { name: 'cil-puzzle' }
+    iconComponent: { name: 'cil-calculator' }
   },
   {
     name: 'Service',

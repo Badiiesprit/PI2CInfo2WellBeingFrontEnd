@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CenterService } from '../../../services/admin/center/center.service';
 import { Center } from 'src/app/model/center';
 import { Category } from 'src/app/model/category';
+import { freeSet } from '@coreui/icons';
 
 @Component({
   selector: 'app-liste',
@@ -10,7 +11,7 @@ import { Category } from 'src/app/model/category';
 })
 export class ListeComponent {
   public centers: Center[] = [];
-
+  icons = freeSet ;
   constructor(private centerService: CenterService) {}
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class ListeComponent {
     });
   }
 
-  deleteCenter(centerId: string): void {
+  deleteCenter(centerId: any): void {
     this.centerService.delete(centerId).subscribe((response) => {
         if (response.result) {
           this.centerService.getAll().subscribe((response) => {

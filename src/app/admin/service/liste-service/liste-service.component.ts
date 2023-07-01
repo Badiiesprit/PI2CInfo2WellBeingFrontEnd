@@ -11,6 +11,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './liste-service.component.html',
   styleUrls: ['./liste-service.component.scss']
 })
+
 export class ListeServiceComponent implements OnInit {
    list:any[] = [];
     motcle:string;
@@ -29,6 +30,9 @@ export class ListeServiceComponent implements OnInit {
     public image:Image = new Image();
     public imageUrl: string;
     public baseurl = environment.url;
+    startDate: string;
+    endDate: string;
+    statistics: any[];
 
   constructor(
     private serviceService: ServiceService,
@@ -41,6 +45,8 @@ export class ListeServiceComponent implements OnInit {
 
 
     ngOnInit() {
+      const startDate = new Date(); // Set the desired start date
+      const endDate = new Date();
 
       this.serviceService.getAll().subscribe(
         (response) => {
@@ -59,9 +65,27 @@ export class ListeServiceComponent implements OnInit {
         }
       );
       // this.getServicesPage(this.currentPage);
-
-
     }
+
+    getStatistics(): void {
+      const startDate = '2023-07-07'; // Replace with your actual start date
+      const endDate = '2023-07-30'; // Replace with your actual end date
+
+      this.http.get<any>('http://localhost:5050/services/statistics', { params: { startDate,endDate } })
+        .subscribe(
+          response => {
+            this.statistics = response.statistics;
+          },
+          error => {
+            console.error('Error fetching statistics:', error);
+          }
+        );
+    }
+
+
+
+
+
 
     showServiceDetails(service: Service) {
       this.selectedService = service;

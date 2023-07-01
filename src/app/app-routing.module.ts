@@ -1,18 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
+import { DefaultLayoutCxComponent } from './containers-cx';
 import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { FormServiceComponent } from './admin/service/form-service/form-service.component';
 import { FormsModule } from '@angular/forms';
+import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
 
 const routes: Routes = [
+
   {
     path: '',
-    redirectTo: 'admin/dashboard',
+    redirectTo: 'Home',
     pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: DefaultLayoutCxComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./client/service/servicecx.module').then((m) => m.ServiceCxModule)
+      }
+    ]
   },
   {
     path: 'admin/category',
@@ -62,9 +79,37 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path:"update/:id",
-  //   component: FormServiceComponent},
+  {
+    path: 'admin/user',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'User'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/user/user.module').then((m) => m.UserModule)
+      }
+    ]
+  },
+
+  {
+    path: 'service-cx',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'ServiceCx'
+    },
+    children: [
+      {
+        path: 'cards',
+        loadChildren: () =>
+          import('./client/service/servicecx.module').then((m) => m.ServiceCxModule)
+      },
+
+    ]
+  },
+
   {
     path: 'admin',
     component: DefaultLayoutComponent,
@@ -153,6 +198,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
+  { path:"services-cards",component:ListServiceCxComponent },
 
   {path: '**', redirectTo: 'dashboard'}
 ];

@@ -12,9 +12,12 @@ import { tap } from 'rxjs/operators';
 })
 export class ServiceService {
   url = environment.url + 'services/';
+  private statisticsUrl = this.url+"statistics";
   constructor(private http: HttpClient  ) {}
 
-
+  getStatistics(startDate: Date, endDate: Date) {
+    return this.http.get<any>(`${this.statisticsUrl}?startDate=${startDate}&endDate=${endDate}`);
+  }
 
   add(serviceData: Service ): Observable<any> {
 

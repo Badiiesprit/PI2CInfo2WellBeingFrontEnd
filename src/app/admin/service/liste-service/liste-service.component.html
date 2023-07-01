@@ -1,3 +1,5 @@
+
+
 <c-col xs>
   <c-card class="mb-4">
     <c-card-header style="display: flex; justify-content: space-between; align-items: center;">
@@ -135,3 +137,43 @@
     </c-card-body>
   </c-card>
 </c-col>
+
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+
+
+<div class="main-content">
+  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <h2 class="mb-5 text-white">Stats Card</h2>
+      <div class="header-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="text" class="form-control" id="startDate" [(ngModel)]="startDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input type="text" class="form-control" id="endDate" [(ngModel)]="endDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary" (click)="getStatistics()">Get Statistics</button>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-xl-3 col-lg-6" *ngFor="let stat of statistics">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <!-- Card content here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
