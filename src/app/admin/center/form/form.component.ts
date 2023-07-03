@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { cilCheck } from '@coreui/icons';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
+import { Icon, icon } from 'leaflet';
 
 @Component({
   selector: 'app-form',
@@ -104,19 +105,43 @@ export class FormComponent {
   }
 
   initializeMap() {
-    const map = L.map('map').setView([51.505, -0.09], 13); // Set the initial center and zoom level
+    const map = L.map('map').setView([36.85329514812128 , 10.20709812641144], 13); // Set the initial center and zoom level
   
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; OpenStreetMap contributors',
     }).addTo(map);
   
-    L.marker([36.8533107, 10.204613]).addTo(map)
-      .bindPopup('A sample marker.')
-      .openPopup();
+    this.centerService.getAll().subscribe(
+      (response) => {
+        if (response.result) {
+          const centers = response.result as Center[];
+          centers.forEach(center => {
+            if (center.altitude !== undefined && center.longitude !== undefined && center.title !== undefined) {
+              let marker = L.marker([parseFloat(center.altitude.toString()), parseFloat(center.longitude.toString())]).addTo(map)
+              .bindPopup(center.title.toString());  
+              marker.on('mouseover', function (e) {
+                marker.openPopup();
+              });
+            
+              marker.on('mouseout', function (e) {
+                marker.closePopup();
+              });          
+            }
+          });
+        }
+      }
+    )
+    const greenIcon = icon({
+      iconUrl: 'assets/images/marker.png',
+      iconSize: [35, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34]
+    });
+    var marker = L.marker([36.85329514812128 , 10.20709812641144], { icon: greenIcon }).addTo(map).bindPopup('Center').openPopup();
 
     map.on('click', (e: L.LeafletMouseEvent) => {
         const { lat, lng } = e.latlng;
-        
+        marker.remove();
         this.getAddress(lat, lng).subscribe((data: any) => {
           const address = data.display_name;
           console.log('Address:', address);
@@ -125,7 +150,9 @@ export class FormComponent {
           this.thiscenter.longitude = lng.toString();
           this.thiscenter.altitude = lat.toString();
           this.thiscenter.location = address;
+          marker = L.marker([lat , lng], { icon: greenIcon }).addTo(map).bindPopup('Center').openPopup();
         });
+
       });
   }
 

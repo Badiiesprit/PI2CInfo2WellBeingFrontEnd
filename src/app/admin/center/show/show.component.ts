@@ -5,6 +5,8 @@ import { CenterService } from 'src/app/services/admin/center/center.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Image } from 'src/app/model/image';
+import * as L from 'leaflet';
+
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
@@ -27,6 +29,7 @@ export class ShowComponent {
           (response) => {
             if (response.result) {
               this.center = response.result;
+              this.initializeMap();
               const images = this.center.image ? [...this.center.image] : [null];
               let index_image = 0;
               images.forEach(image => {
@@ -45,5 +48,16 @@ export class ShowComponent {
 
   }
   
+  initializeMap() {
+    const map = L.map('map').setView([36.85329514812128 , 10.20709812641144], 13); // Set the initial center and zoom level
+  
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; OpenStreetMap contributors',
+    }).addTo(map);
+    if (this.center.altitude !== undefined && this.center.longitude !== undefined && this.center.title !== undefined) {
+      let marker = L.marker([parseFloat(this.center.altitude.toString()), parseFloat(this.center.longitude.toString())]).addTo(map)
+      .bindPopup(this.center.title.toString()).openPopup();          
+    }
+  }
 
 }

@@ -6,9 +6,6 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
-import { FormServiceComponent } from './admin/service/form-service/form-service.component';
-import { FormsModule } from '@angular/forms';
-import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
 
 const routes: Routes = [
   {
@@ -27,6 +24,62 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./client/home/homecx.module').then((m) => m.HomecxModule)
+      }
+    ]
+  },
+  {
+    path: 'centres',
+    component: DefaultLayoutCxComponent,
+    data: {
+      title: 'Centres'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./client/centres/centres.module').then((m) => m.CentresModule)
+      }
+    ]
+  },
+  {
+    path: 'services',
+    component: DefaultLayoutCxComponent,
+    data: {
+      title: 'Services'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./client/services/services.module').then((m) => m.ServicesModule)
+      }
+    ]
+  },
+  {
+    path: 'offres',
+    component: DefaultLayoutCxComponent,
+    data: {
+      title: 'Offres'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./client/offres/offres.module').then((m) => m.OffresModule)
+      }
+    ]
+  },
+  {
+    path: 'blog',
+    component: DefaultLayoutCxComponent,
+    data: {
+      title: 'Blog'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./client/blog/blog.module').then((m) => m.BlogModule)
       }
     ]
   },
@@ -58,7 +111,6 @@ const routes: Routes = [
       }
     ]
   },
-
   {
     path: 'service',
     component: DefaultLayoutComponent,
@@ -92,23 +144,6 @@ const routes: Routes = [
       }
     ]
   },
-
-  {
-    path: 'service-cx',
-    component: DefaultLayoutComponent,
-    data: {
-      title: 'ServiceCx'
-    },
-    children: [
-      {
-        path: 'cards',
-        loadChildren: () =>
-          import('./client/service/servicecx.module').then((m) => m.ServiceCxModule)
-      },
-
-    ]
-  },
-
   {
     path: 'admin',
     component: DefaultLayoutComponent,
@@ -197,8 +232,6 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  { path:"services-cards",component:ListServiceCxComponent },
-
   {path: '**', redirectTo: 'dashboard'}
 ];
 
