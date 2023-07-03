@@ -1,26 +1,29 @@
+<div class="search-container">
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" name="search" placeholder="Search..."
+      [(ngModel)]="motcle" (input)="search()">
+  </form>
+</div>
 
-<div class="row">
-  <div class="search-container">
-    <input type="search" name="search" placeholder="Search..." [(ngModel)]="motcle" >
-  </div>
+<div class="card-container">
+  <div
+    *ngFor="let service of services | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index"
+    class="card"
+    style="width: 18rem;"
+    [hidden]="!isMatched(service, motcle)"
+  >
+    <div class="image-container">
+      <img src="{{ baseurl }}{{ service.image.path }}" class="card-img-top" alt="..." width="200px" height="300px">
+    </div>
 
-  <div *ngFor="let service of services " class="col-md-3">
-    <div class="card" style="width: 18rem;" *ngIf="service.description.includes(motcle) || motcle==null" >
-
-      <img src="{{baseurl}}{{service.image.path}} " class="card-img-top" alt="..." width="200px" height="300px">
-      <div class="card-body">
-        <h5 class="card-title">{{service.name}}</h5>
-        <p class="card-text">Entreprise: {{service.description}} </p>
-        <p class="card-text">Description {{service.location}} </p>
-        <p class="card-text">Description {{service.image.path}} </p>
-
-        <!-- <button class="btn btn-lg btn-primary" [disabled]="stage.disponible==false" (click)="incrementLike(stage)">like {{stage.nbrInteresse}} </button> -->
-        &nbsp;
-        &nbsp;
-        <!-- <button class="btn btn-sm btn-primary BtnBuy" (click)="delete(stage)"> Delete </button> -->
-        &nbsp;
-        <!-- "*ngIf="product.quantity>0" -->
-      </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ service.name }}</h5>
+      <p class="card-text">Description: {{ service.description }}</p>
+      <p class="card-text">Location: {{ service.location }}</p>
     </div>
   </div>
+</div>
+
+<div class="pagination-container">
+  <pagination-controls class="custom-pagination" (pageChange)="onPageChange($event)"></pagination-controls>
 </div>

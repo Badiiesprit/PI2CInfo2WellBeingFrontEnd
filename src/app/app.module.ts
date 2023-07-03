@@ -7,7 +7,9 @@ import { IconSetModule } from '@coreui/icons-angular';
 import { IconModule, IconSetService, } from '@coreui/icons-angular';
 import { DataTablesModule } from "angular-datatables";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 // Import routing module
@@ -42,7 +44,8 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
+  UtilitiesModule,
+
 } from '@coreui/angular';
 import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
 import { HomeComponent } from './client/home/home.component';
@@ -92,6 +95,9 @@ const APP_CONTAINERS = [
     CardModule,
     NgScrollbarModule,
     HttpClientModule,
+    MatGridListModule,
+    MatCardModule,
+    NgxPaginationModule
   ],
   providers: [
     {

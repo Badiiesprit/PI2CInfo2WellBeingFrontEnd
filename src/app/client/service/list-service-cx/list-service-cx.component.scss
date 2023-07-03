@@ -1,0 +1,35 @@
+.image-container {
+  width: auto; /* Set the desired width for the image container */
+  height: 200px; /* Set the desired height for the image container */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+
+
+.card-img-top {
+  width: 300px; /* Make the image fill the container width */
+  height: auto; /* Maintain the image's original aspect ratio */
+}
+.search-container{
+  margin-bottom: 20px;
+  width: 300px;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-gap: 1rem;
+}
+.card {
+  height: 400px; /* Set the desired height for the cards */
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+pagination-controls .custom-button-class {
+  border-radius: 4px;
+  background-color: aqua;
+  /* Add any other styling properties you want to apply to the buttons */
+}

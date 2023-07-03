@@ -7,6 +7,10 @@ import { IconModule } from '@coreui/icons-angular';
 import { ListServiceCxComponent} from './list-service-cx/list-service-cx.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import {
   ButtonGroupModule,
@@ -14,7 +18,7 @@ import {
   DropdownModule,
   FormModule,
   ListGroupModule,
-  SharedModule
+  SharedModule,
 } from '@coreui/angular';
 
 // Theme Routing
@@ -37,10 +41,13 @@ import { ServiceRoutingModule } from './servicecx-routing.module';
     ListGroupModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    NgxPaginationModule,
   ],
   declarations: [
-    ListServiceCxComponent
+    ListServiceCxComponent,
   ]
 })
 export class ServiceCxModule {
