@@ -44,8 +44,6 @@ import {
   TabsModule,
   UtilitiesModule
 } from '@coreui/angular';
-import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
-import { HomeComponent } from './client/home/home.component';
 
 
 
@@ -60,7 +58,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, HomeComponent ],
+  declarations: [AppComponent, ...APP_CONTAINERS ],
   imports: [
     MatSlideToggleModule,
     DataTablesModule,

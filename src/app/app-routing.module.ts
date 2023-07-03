@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { ListServiceCxComponent } from './client/service/list-service-cx/list-service-cx.component';
 
 const routes: Routes = [
-
   {
     path: '',
     redirectTo: 'Home',
@@ -27,7 +26,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./client/service/servicecx.module').then((m) => m.ServiceCxModule)
+          import('./client/home/homecx.module').then((m) => m.HomecxModule)
       }
     ]
   },

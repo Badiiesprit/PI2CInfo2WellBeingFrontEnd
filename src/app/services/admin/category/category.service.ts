@@ -8,7 +8,8 @@ import { Category } from 'src/app/model/category';
 })
 export class CategoryService {
   public url: string= environment.url+'category/';
-  public token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhmNWVhMDJhOGQ1YmI5YWEyNThlODgiLCJyb2xlIjpbXSwiaWF0IjoxNjg3MzkzNTExLCJleHAiOjUyODczODk5MTF9.iv1cyIm1gkbLmRp9QmJoya2-ZC8n56Spb9AaGVFl990";
+
+  public token = localStorage.getItem('token');
   constructor(private http: HttpClient) {
   }
 
@@ -39,7 +40,8 @@ export class CategoryService {
     Object.entries(category).forEach(([key, value]) => {
       formData.append(key, value);
     });
-    if(file) formData.append("image", file);
+    if(file) formData.set("image", file);
+
     return this.http.post<Category []>(this.url+'add',formData, { headers })
       .pipe(
         catchError((error: any) => {
@@ -66,19 +68,13 @@ export class CategoryService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     const formData = new FormData();
     Object.entries(category).forEach(([key, value]) => {
-      if(key == "parent"){
-        if(category.parent && category.parent._id){
-          formData.append("parent", category?.parent?._id.toString());
-        }
-      }else{
-        formData.append(key, value);
-      }
-
+      formData.append(key, value);
     });
+    if(category.parent && category.parent._id){
+      formData.set("parent", category?.parent?._id.toString());
+    }
     if(file){
-      formData.append("image", file);
-    }else{
-      formData.delete("image");
+      formData.set("image", file);
     }
 
     return this.http.post<Category []>(this.url+'update/'+category._id,formData, { headers })
@@ -90,34 +86,6 @@ export class CategoryService {
       );
   }
 
-  updateCategory(category:Category,file:File): Observable<any> {
-    // const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    const formData = new FormData();
-    Object.entries(category).forEach(([key, value]) => {
-      if(key == "parent"){
-        if(category.parent && category.parent._id){
-          formData.append("parent", category?.parent?._id.toString());
-        }
-      }else{
-        formData.append(key, value);
-      }
-      
-    });
-    if(file){
-      formData.append("image", file);
-    }else{
-      formData.delete("image");
-    }
-    
-    return this.http.post<Category []>(this.url+'update/'+category._id,formData, { headers })
-      .pipe(
-        catchError((error: any) => {
-          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
-          throw error; 
-        })
-      );
-  }
 
 
 }

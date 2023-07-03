@@ -5,27 +5,6 @@ import { ListServiceCxComponent} from './list-service-cx/list-service-cx.compone
 
 
 const routes: Routes = [
-  {
-    path: '',
-    data: {
-      title: 'ServiceCx',
-    },
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'cards',
-      },
-      {
-        path: 'cards',
-        component: ListServiceCxComponent,
-        data: {
-          title: 'Lister Services',
-        },
-      },
-
-    ],
-  },
 ];
 
 @NgModule({
