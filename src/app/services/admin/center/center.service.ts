@@ -23,6 +23,18 @@ export class CenterService {
       );
   }
 
+  getTopVus(): Observable<any> {
+    // const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<Center []>(this.url+'gettopvus/3',{headers})
+      .pipe(
+        catchError((error: any) => {
+          console.error('Une erreur s\'est produite lors de la récupération des services:', error);
+          throw error;
+        })
+      );
+  }
+
   delete(id:string): Observable<any> {
     // const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
