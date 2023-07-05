@@ -11,7 +11,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
 import {
   ButtonGroupModule,
   ButtonModule,
@@ -45,6 +44,7 @@ import { ServiceRoutingModule } from './servicecx-routing.module';
     MatGridListModule,
     MatCardModule,
     NgxPaginationModule,
+
   ],
   declarations: [
     ListServiceCxComponent,

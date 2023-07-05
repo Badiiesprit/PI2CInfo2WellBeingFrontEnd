@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipeModule  } from 'ngx-filter-pipe';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 // Import routing module
@@ -97,7 +98,7 @@ const APP_CONTAINERS = [
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     {
