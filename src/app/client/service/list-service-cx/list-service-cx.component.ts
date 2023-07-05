@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/model/service';
-import { ServiceService } from 'src/app/services/service.service';
+import { ServiceService } from 'src/app/services/admin/service/service.service';
 import { HttpClient } from '@angular/common/http';
-import { ImageService } from 'src/app/services/image.service';
+import { ImageService } from 'src/app/services/admin/image/image.service';
 import { Image } from 'src/app/model/image';
 import { environment } from '../../../environments/environment';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +20,7 @@ export class ListServiceCxComponent implements OnInit {
   currentPage: number = 1; // Current page number
   itemsPerPage: number = 8; // Number of items to display per page
   sortOrder: string = 'asc'; // Sort order for date sorting
+  sort_direction:string= "up";
 
 
   constructor(
@@ -76,8 +77,10 @@ export class ListServiceCxComponent implements OnInit {
       const dateB = new Date(b.date).getTime();
 
       if (this.sortOrder === 'asc') {
+        this.sort_direction = "up";
         return dateA - dateB;
       } else {
+        this.sort_direction = "down";
         return dateB - dateA;
       }
     });

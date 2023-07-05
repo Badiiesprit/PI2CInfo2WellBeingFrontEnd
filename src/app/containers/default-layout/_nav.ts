@@ -71,5 +71,33 @@ export const navItems: INavData[] = [
 
     ],
   },
+  {
+    name: 'Post',
+    url: '/post',
+    iconComponent: { name: 'cil-drop' },
+
+    children: [
+      {
+        name: 'Liste Posts',
+        url: '/post/lister',
+
+      },
+      {
+        name: 'Formulaire',
+        url: '/post/form',
+
+      },
+
+    ],
+  },
+
+  {
+    name: 'Comment',
+    url: '/comment/lister',
+    iconComponent: { name: 'cil-drop' },
+  },
+
+
+
 ];
 

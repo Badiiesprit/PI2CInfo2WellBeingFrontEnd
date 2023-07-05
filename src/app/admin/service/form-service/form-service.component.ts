@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/model/service';
-import { ServiceService } from 'src/app/services/service.service';
+import { ServiceService } from 'src/app/services/admin/service/service.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

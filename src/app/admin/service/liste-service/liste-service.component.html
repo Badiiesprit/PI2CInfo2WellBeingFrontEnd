@@ -4,27 +4,10 @@
   <c-card class="mb-4">
     <c-card-header style="display: flex; justify-content: space-between; align-items: center;">
       <span>Services</span>
-      <button [routerLink]="['service/form']" style="background: none; border: none;">
+      <button routerLink="/service/form"  style="background: none; border: none;">
         <i class="fa-solid fa-plus circular-button"></i>
       </button>
     </c-card-header>
-
-
-    <!-- <c-card class="mb-5">
-      <div class="search-container">
-        <div class="search-field">
-          <input class="search-fields" type="text" [(ngModel)]="searchName" placeholder="Search by Name">
-          <input class="search-fields" type="text" [(ngModel)]="searchDescription" placeholder="Search by Description">
-          <input class="search-fields" type="text" [(ngModel)]="searchLocation" placeholder="Search by Location">
-          <input class="search-fields" type="text" [(ngModel)]="searchDate" placeholder="Search by Date">
-          <button class="search-button" (click)="searchServices()">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </c-card>
- -->
-
     <c-card-body>
       <div class="table-container">
         <table datatable class="table table-striped" id="myTable" [attr.hover]="true" [attr.responsive]="true" [attr.striped]="true" align="middle" cTable>
@@ -97,83 +80,8 @@
           </div>
         </div>
       </c-card>
-
-
-
-
-
-      <!-- <div class="pagination">
-        <button class="pagination-button" [disabled]="currentPage === 1" (click)="getServicesPage(1)">
-          First
-        </button>
-        <button class="pagination-button" [disabled]="currentPage === 1" (click)="getServicesPage(currentPage - 1)">
-          Previous
-        </button>
-        <span class="pagination-current-page">{{ currentPage }}</span>
-        <button class="pagination-button" [disabled]="currentPage === totalPages" (click)="getServicesPage(currentPage + 1)">
-          Next
-        </button>
-        <button class="pagination-button" [disabled]="currentPage === totalPages" (click)="getServicesPage(totalPages)">
-          Last
-        </button>
-      </div>
-      <div class="sort-container">
-        <select [(ngModel)]="sortField" id="sortField" class="sort-dropdown">
-          <option value="">-- Sort By --</option>
-          <option value="name">Name</option>
-          <option value="description">Description</option>
-          <option value="location">Location</option>
-          <option value="date">Date</option>
-        </select>
-        <select [(ngModel)]="sortOrder" id="sortOrder" class="sort-dropdown">
-          <option value="">-- Order --</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-        <button class="sort-button" (click)="sortServices()">
-          <i class="fas fa-sort"></i>
-        </button>
-      </div> -->
     </c-card-body>
   </c-card>
 </c-col>
-
-
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
-
-
-<div class="main-content">
-  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <h2 class="mb-5 text-white">Stats Card</h2>
-      <div class="header-body">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="startDate">Start Date</label>
-              <input type="text" class="form-control" id="startDate" [(ngModel)]="startDate">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="endDate">End Date</label>
-              <input type="text" class="form-control" id="endDate" [(ngModel)]="endDate">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-primary" (click)="getStatistics()">Get Statistics</button>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-xl-3 col-lg-6" *ngFor="let stat of statistics">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <!-- Card content here -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 

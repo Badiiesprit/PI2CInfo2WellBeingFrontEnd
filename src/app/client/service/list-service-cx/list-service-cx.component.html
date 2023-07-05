@@ -7,7 +7,8 @@
       <div class="sort-container">
         <button class="sort-button" (click)="sortServicesByDate()">
           <span class="sort-icon" [class.asc]="sortOrder === 'asc'" [class.desc]="sortOrder === 'desc'"></span>
-        </button>
+          <i class="fas fa-arrow-{{sort_direction}}-wide-short"></i>
+          <!-- <i class="fa-solid fa-arrow-up-wide-short"></i> -->        </button>
       </div>
   </form>
 
@@ -23,8 +24,10 @@
       <h5 class="card-title">{{ service.name }}</h5>
       <p class="card-text limited-description">{{ service.description }}</p>
       <p class="card-text"> <i class="fas fa-map-marker-alt"></i> {{ service.location }}</p>
-      <p class="card-text"> <i class="far fa-calendar-alt"></i> {{ service.date }}</p>
-
+      <div class="plus">
+        <p class="card-text"> <i class="fas fa-calendar-alt"></i> {{ service.date | date:'yyyy-MM-dd'  }} </p>
+        <button >Voir plus</button>
+      </div>
     </div>
   </div>
 </div>

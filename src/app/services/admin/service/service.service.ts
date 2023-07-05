@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
-import { Service } from '../model/service';
-import { environment } from '../environments/environment';
+import { Service } from '../../../model/service';
+import { environment } from '../../../environments/environment';
 import { Observable, catchError } from 'rxjs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { tap } from 'rxjs/operators';
@@ -15,9 +15,7 @@ export class ServiceService {
   private statisticsUrl = this.url+"statistics";
   constructor(private http: HttpClient  ) {}
 
-  getStatistics(startDate: Date, endDate: Date) {
-    return this.http.get<any>(`${this.statisticsUrl}?startDate=${startDate}&endDate=${endDate}`);
-  }
+
 
   add(serviceData: Service ): Observable<any> {
 

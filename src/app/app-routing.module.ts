@@ -72,11 +72,34 @@ const routes: Routes = [
         loadChildren: () =>
           import('./admin/service/service.module').then((m) => m.ServiceModule)
       },
+    ]
+  },
+  {
+    path: 'post',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Post'
+    },
+    children: [
       {
-        path: 'form',
+        path: '',
         loadChildren: () =>
-          import('./admin/service/service.module').then((m) => m.ServiceModule)
-      }
+          import('./admin/post/post.module').then((m) => m.PostModule)
+      },
+    ]
+  },
+  {
+    path: 'comment',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Comment'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./admin/comment/comment.module').then((m) => m.CommentModule)
+      },
     ]
   },
   {
@@ -96,13 +119,13 @@ const routes: Routes = [
 
   {
     path: 'service-cx',
-    component: DefaultLayoutComponent,
+    component: DefaultLayoutCxComponent,
     data: {
       title: 'ServiceCx'
     },
     children: [
       {
-        path: 'cards',
+        path: '',
         loadChildren: () =>
           import('./client/service/servicecx.module').then((m) => m.ServiceCxModule)
       },
@@ -198,7 +221,6 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  { path:"services-cards",component:ListServiceCxComponent },
 
   {path: '**', redirectTo: 'dashboard'}
 ];
